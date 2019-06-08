@@ -7,6 +7,8 @@ import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 
+import app.mobile.ecommerce.ecommerce.model.User;
+
 @Controller
 @RequestMapping("/user")
 public class UserController {

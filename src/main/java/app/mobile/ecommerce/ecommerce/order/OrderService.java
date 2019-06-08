@@ -10,11 +10,12 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import app.mobile.ecommerce.ecommerce.Http;
-import app.mobile.ecommerce.ecommerce.user.User;
+import app.mobile.ecommerce.ecommerce.model.Order;
+import app.mobile.ecommerce.ecommerce.model.User;
 import app.mobile.ecommerce.ecommerce.user.UserRepository;
 
 @Service
-public class OrderService implements Http<Order,Integer> {
+public class OrderService extends Http<Order,Integer> {
 
 	@Autowired
 	private OrderRepository orderRepository;

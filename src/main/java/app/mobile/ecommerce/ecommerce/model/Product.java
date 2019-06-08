@@ -1,4 +1,4 @@
-package app.mobile.ecommerce.ecommerce.item;
+package app.mobile.ecommerce.ecommerce.model;
 
 import java.io.Serializable;
 

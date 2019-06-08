@@ -6,9 +6,10 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import app.mobile.ecommerce.ecommerce.Http;
+import app.mobile.ecommerce.ecommerce.model.Item;
 
 @Service
-public class ItemService implements Http<Item,Integer>{
+public class ItemService extends Http<Item,Integer>{
 
 	@Autowired
 	ItemRepository itemRepository;

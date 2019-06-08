@@ -2,13 +2,13 @@ package app.mobile.ecommerce.ecommerce;
 
 import java.util.List;
 
-public interface Http <Entity,Key>{
+public abstract class Http <Entity,Key>{
 	
-	public List<Entity> doGet();
-	public Entity doGet(Key k);
-	public void doPost(Entity e);
-	public void doPut(Key k, Entity e);
-	public void doDelete(Key k);
+	protected abstract List<Entity> doGet();
+	protected abstract Entity doGet(Key k);
+	protected abstract void doPost(Entity e);
+	protected abstract void doPut(Key k, Entity e);
+	protected abstract void doDelete(Key k);
 	
 	
 

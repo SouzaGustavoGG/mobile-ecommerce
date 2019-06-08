@@ -1,4 +1,4 @@
-package app.mobile.ecommerce.ecommerce.user;
+package app.mobile.ecommerce.ecommerce.model;
 
 import java.io.Serializable;
 

@@ -12,6 +12,8 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RestController;
 
+import app.mobile.ecommerce.ecommerce.model.Order;
+
 @RestController
 @RequestMapping("/pedido")
 public class OrderController {

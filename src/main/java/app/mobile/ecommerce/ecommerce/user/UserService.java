@@ -8,9 +8,10 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import app.mobile.ecommerce.ecommerce.Http;
+import app.mobile.ecommerce.ecommerce.model.User;
 
 @Service
-public class UserService implements Http<User,Integer>{
+public class UserService extends Http<User,Integer>{
 	
 	@Autowired
 	private UserRepository userRepository;

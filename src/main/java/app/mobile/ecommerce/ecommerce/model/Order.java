@@ -1,4 +1,4 @@
-package app.mobile.ecommerce.ecommerce.order;
+package app.mobile.ecommerce.ecommerce.model;
 
 import java.io.Serializable;
 import java.util.Calendar;
@@ -18,9 +18,6 @@ import javax.persistence.PrePersist;
 import javax.persistence.SequenceGenerator;
 import javax.persistence.Table;
 
-import app.mobile.ecommerce.ecommerce.item.Item;
-import app.mobile.ecommerce.ecommerce.user.User;
-
 @Entity
 public class Order implements Serializable{
 
@@ -28,7 +25,7 @@ public class Order implements Serializable{
 	
 	@Id
 	@GeneratedValue(strategy = GenerationType.SEQUENCE, generator = "order_generator")
-	@SequenceGenerator(name="order_generator", sequenceName = "order_seq")
+	@SequenceGenerator(name="order_generator", sequenceName = "order_id_seq")
 	@Column(name = "id", updatable = false, nullable = false)
 	private Integer id;
 
