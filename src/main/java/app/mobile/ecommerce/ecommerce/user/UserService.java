@@ -18,12 +18,12 @@ public class UserService extends Http<User,Integer>{
 	@Autowired
 	private UserRepository userRepository;
 	
-	public Boolean login(String username, String password){
+	public Integer login(String username, String password){
 		User user = userRepository.findByUsername(username);
 		if(user == null){
 			throw new EcommerceException(HttpStatus.BAD_REQUEST);
 		}
-		return user.getPassword().equals(password);
+		return user.getPassword().equals(password) ? user.getId() : -1;
 	}
 
 	@Override
@@ -35,8 +35,8 @@ public class UserService extends Http<User,Integer>{
 	
 	@Override
 	public User doGet(Integer k) {
-		// TODO Auto-generated method stub
-		return null;
+		Optional<User> user = userRepository.findById(k);
+		return user.isPresent() ? user.get() : null;
 	}
 
 	@Override

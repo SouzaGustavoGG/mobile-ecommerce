@@ -19,15 +19,20 @@ public class UserController {
 	@Autowired
 	private UserService userService;
 	
-	@RequestMapping(value="/id", method=RequestMethod.PUT)
+	@RequestMapping(value="/{id}", method=RequestMethod.GET)
+	public ResponseEntity<User> doGet(@PathVariable("id") Integer id){
+		return new ResponseEntity<User>(userService.doGet(id), HttpStatus.OK);
+	}
+	
+	@RequestMapping(value="/{id}", method=RequestMethod.PUT, produces=MediaType.APPLICATION_JSON_UTF8_VALUE)
 	public ResponseEntity<Void> doPut(@PathVariable("id") Integer id, @RequestBody User form){
 		userService.doPut(id, form);
 		return new ResponseEntity<Void>(HttpStatus.OK);
 	}
 	
-	@RequestMapping(value="/login", method=RequestMethod.POST, produces=MediaType.TEXT_PLAIN_VALUE)
+	@RequestMapping(value="/login", method=RequestMethod.POST, consumes=MediaType.APPLICATION_JSON_UTF8_VALUE, produces=MediaType.TEXT_PLAIN_VALUE)
 	public ResponseEntity<String> doLogin( @RequestBody User form){
-		boolean success = userService.login(form.getUsername(), form.getPassword());
-		return new ResponseEntity<String>(String.valueOf(success), HttpStatus.OK);
+		Integer id = userService.login(form.getUsername(), form.getPassword());
+		return new ResponseEntity<String>(String.valueOf(id), HttpStatus.OK);
 	}
 }
