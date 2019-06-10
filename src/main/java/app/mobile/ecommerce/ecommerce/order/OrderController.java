@@ -26,10 +26,10 @@ public class OrderController {
 		return new ResponseEntity<>(orderService.doGetByUser(id), HttpStatus.OK);
 	}
 	
-	@RequestMapping(method=RequestMethod.POST)
-	public ResponseEntity<Void> postOrder(@RequestBody Order form){
+	@RequestMapping(method=RequestMethod.POST, consumes=MediaType.APPLICATION_JSON_UTF8_VALUE, produces=MediaType.TEXT_PLAIN_VALUE)
+	public ResponseEntity<String> postOrder(@RequestBody Order form){
 		orderService.doPost(form);
-		return new ResponseEntity<>(HttpStatus.CREATED);
+		return new ResponseEntity<>(String.valueOf(true), HttpStatus.CREATED);
 	}
 	
 	@RequestMapping(method=RequestMethod.DELETE, value="/{id}")

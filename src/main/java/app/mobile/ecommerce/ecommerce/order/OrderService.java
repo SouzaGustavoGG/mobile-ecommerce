@@ -7,9 +7,12 @@ import java.util.List;
 import java.util.Optional;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.HttpStatus;
 import org.springframework.stereotype.Service;
 
 import app.mobile.ecommerce.ecommerce.Http;
+import app.mobile.ecommerce.ecommerce.exception.EcommerceException;
+import app.mobile.ecommerce.ecommerce.model.Item;
 import app.mobile.ecommerce.ecommerce.model.Order;
 import app.mobile.ecommerce.ecommerce.model.User;
 import app.mobile.ecommerce.ecommerce.user.UserRepository;
@@ -54,7 +57,22 @@ public class OrderService extends Http<Order,Integer> {
 
 	@Override
 	public void doPost(Order e) {
-		// TODO Auto-generated method stub
+		//validate form
+		if(e.getUser() == null  || e.getItems() == null) {
+			throw new EcommerceException(HttpStatus.BAD_REQUEST);
+		}
+		for(Item i : e.getItems()) {
+			if(i.getProduct() == null || i.getQuantity() == null) {
+				throw new EcommerceException(HttpStatus.BAD_REQUEST);
+			}
+		}
+		
+		Optional<User> user = userRepository.findById(e.getUser().getId());
+		
+		Order o = new Order();
+		o.setUser(user.get());
+		o.setItems(e.getItems());
+		orderRepository.save(e);
 		
 	}
 

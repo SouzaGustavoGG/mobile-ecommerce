@@ -23,7 +23,7 @@ public class UserService extends Http<User,Integer>{
 		if(user == null){
 			throw new EcommerceException(HttpStatus.BAD_REQUEST);
 		}
-		return user.getPassword().equals(password) ? user.getId() : -1;
+		return user.getPassword().equals(password) ? user.getId() : Integer.valueOf(-1);
 	}
 
 	@Override
@@ -52,7 +52,13 @@ public class UserService extends Http<User,Integer>{
 	public void doPut(Integer k, User e) {
 		Optional<User> user = userRepository.findById(k);
 		if(user.isPresent()){
-			user.get().setAddress(e.getAddress());
+			user.get().getAddress().setStreet(e.getAddress().getStreet());
+			user.get().getAddress().setNum(e.getAddress().getNum());
+			user.get().getAddress().setExtra(e.getAddress().getExtra());
+			user.get().getAddress().setZipCode(e.getAddress().getZipCode());
+			user.get().getAddress().setCity(e.getAddress().getCity());
+			user.get().getAddress().setState(e.getAddress().getState());
+			user.get().getAddress().setCountry(e.getAddress().getCountry());
 			userRepository.save(user.get());
 		}
 	}

@@ -5,6 +5,7 @@ import java.util.Calendar;
 import java.util.Date;
 import java.util.List;
 
+import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
@@ -44,7 +45,8 @@ public class Order implements Serializable{
 	private User user;
 	@Column
 	private Double total;
-	
+
+
 	@PrePersist
 	private void onCreate(){
 		createDate = Calendar.getInstance().getTime();
@@ -84,6 +86,15 @@ public class Order implements Serializable{
 
 	public void setUser(User user) {
 		this.user = user;
+	}
+	
+	public Double getTotal() {
+		return total;
+	}
+
+
+	public void setTotal(Double total) {
+		this.total = total;
 	}
 
 	
