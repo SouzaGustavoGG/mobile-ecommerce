@@ -5,9 +5,11 @@ import java.util.List;
 import java.util.Optional;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.HttpStatus;
 import org.springframework.stereotype.Service;
 
 import app.mobile.ecommerce.ecommerce.Http;
+import app.mobile.ecommerce.ecommerce.exception.EcommerceException;
 import app.mobile.ecommerce.ecommerce.model.User;
 
 @Service
@@ -15,6 +17,14 @@ public class UserService extends Http<User,Integer>{
 	
 	@Autowired
 	private UserRepository userRepository;
+	
+	public Boolean login(String username, String password){
+		User user = userRepository.findByUsername(username);
+		if(user == null){
+			throw new EcommerceException(HttpStatus.BAD_REQUEST);
+		}
+		return user.getPassword().equals(password);
+	}
 
 	@Override
 	public List<User> doGet() {
