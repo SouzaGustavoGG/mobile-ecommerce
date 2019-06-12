@@ -1,5 +1,7 @@
 package app.mobile.ecommerce.ecommerce.model;
 
+import java.io.Serializable;
+
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.Id;
@@ -9,8 +11,12 @@ import javax.persistence.Table;
 
 @Entity
 @Table
-public class User {
+public class User implements Serializable{
 
+	/**
+	 * 
+	 */
+	private static final long serialVersionUID = 1L;
 	@Id
 	private Integer id;
 	@Column
@@ -20,7 +26,6 @@ public class User {
 	@OneToOne
 	@JoinColumn(name="address_id")
 	private Address address;
-	
 	
 	public Integer getId() {
 		return id;

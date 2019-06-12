@@ -1,3 +1,4 @@
+--DROP SCHEMA ecommerce CASCADE;
 CREATE SCHEMA IF NOT EXISTS ecommerce AUTHORIZATION postgres;
 
 DROP TABLE IF EXISTS ecommerce.address;
@@ -29,14 +30,6 @@ CREATE TABLE ecommerce.product(
 	price DOUBLE PRECISION
 );
 
-DROP TABLE IF EXISTS ecommerce.item;
-CREATE TABLE ecommerce.item(
-	id SERIAL PRIMARY KEY,
-	quantity INTEGER NOT NULL,
-	product_id INTEGER,
-	FOREIGN KEY (product_id) REFERENCES ecommerce.product (sku)
-);
-
 DROP TABLE IF EXISTS ecommerce.order;
 CREATE TABLE  ecommerce.order(
 	id SERIAL PRIMARY KEY,
@@ -46,13 +39,14 @@ CREATE TABLE  ecommerce.order(
 	FOREIGN KEY (user_id) REFERENCES ecommerce.user (id)
 );
 
-
-DROP TABLE IF EXISTS ecommerce.order_item;
-CREATE TABLE ecommerce.order_item(
-	order_id INTEGER,
-	item_id INTEGER,
-	FOREIGN KEY (order_id) REFERENCES ecommerce.order (id),
-	FOREIGN KEY (item_id) REFERENCES ecommerce.item (id)
+DROP TABLE IF EXISTS ecommerce.item;
+CREATE TABLE ecommerce.item(
+	id SERIAL PRIMARY KEY,
+	quantity INTEGER NOT NULL,
+	product_id INTEGER,
+	order_id INTEGER, 
+	FOREIGN KEY (product_id) REFERENCES ecommerce.product (sku),
+	FOREIGN KEY (order_id) REFERENCES ecommerce.order (id)
 );
 
 INSERT INTO ecommerce.product(sku, name, price) VALUES (1,'Produto A', 10.0);

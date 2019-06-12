@@ -12,14 +12,14 @@ import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
-import javax.persistence.JoinTable;
-import javax.persistence.ManyToMany;
+import javax.persistence.OneToMany;
 import javax.persistence.OneToOne;
 import javax.persistence.PrePersist;
 import javax.persistence.SequenceGenerator;
 import javax.persistence.Table;
 
 @Entity
+@Table(name="order")
 public class Order implements Serializable{
 
 	private static final long serialVersionUID = 1L;
@@ -30,18 +30,15 @@ public class Order implements Serializable{
 	@Column(name = "id", updatable = false, nullable = false)
 	private Integer id;
 
-	@ManyToMany
-    @JoinTable(
-            name ="order_item", 
-            joinColumns = { @JoinColumn(name = "order_id") }, 
-            inverseJoinColumns = { @JoinColumn(name = "item_id") }
-        )
+	@OneToMany(cascade = CascadeType.ALL, orphanRemoval = true)
+	@JoinColumn(name = "order_id")
 	private List<Item> items;
 	
 	@Column(columnDefinition = "DATE")
 	private Date createDate;
+	
 	@OneToOne
-	@JoinColumn(name="user_id")
+	@JoinColumn(name="user_id", referencedColumnName ="id")
 	private User user;
 	@Column
 	private Double total;

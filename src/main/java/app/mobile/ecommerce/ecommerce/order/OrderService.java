@@ -72,8 +72,8 @@ public class OrderService extends Http<Order,Integer> {
 		Order o = new Order();
 		o.setUser(user.get());
 		o.setItems(e.getItems());
-		orderRepository.save(e);
-		
+		o.setTotal(e.getTotal());
+		orderRepository.save(o);		
 	}
 
 	@Override
@@ -84,6 +84,7 @@ public class OrderService extends Http<Order,Integer> {
 			order.get().setItems(e.getItems());
 			
 			orderRepository.save(order.get());
+			
 		}
 		
 	}
