@@ -1,5 +1,4 @@
 --DROP SCHEMA ecommerce CASCADE;
-CREATE SCHEMA IF NOT EXISTS ecommerce AUTHORIZATION postgres;
 
 DROP TABLE IF EXISTS ecommerce.address;
 CREATE TABLE ecommerce.address(
