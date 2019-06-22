@@ -3,3 +3,4 @@ RUN mkdir /home/service
 COPY target/*.jar /home/service/mobile-ecommerce.jar
 WORKDIR /home/service
 ENTRYPOINT exec java $JVM_OPTS -jar mobile-ecommerce.jar
+EXPOSE 8081

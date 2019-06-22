@@ -1,0 +1,32 @@
+version: '3'
+services:
+    #container postgres
+    db:
+        container_name: postgres
+        image: postgres:9.6-alpine
+        environment:
+            - 'POSTGRES_PASSWORD=postgres'
+            - 'POSTGRES_USER=postgres'
+            - 'POSTGRES_DB=local'
+            - 'PGDATA=/var/lib/postgresql/data/pgdata'
+        ports:
+            - 54321:5432
+        volumes:
+            - ./postgres-data:/var/lib/postgresql/data
+            - ./create-db.sql:/docker-entrypoint-initdb.d/init.sql
+    #container spring-boot rest api
+    web:
+      build: .
+      container_name: backend-ecommerce
+      ports: 
+          - 8081:8081
+      environment:
+        - SPRING_PROFILES_ACTIVE=docker
+      depends_on:
+        #necessita container banco rodando para validar schema
+        - db
+      links:
+        - db
+      
+volumes: 
+  postgres: {}

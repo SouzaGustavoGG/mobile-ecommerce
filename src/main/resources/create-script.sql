@@ -1,4 +1,9 @@
 --DROP SCHEMA ecommerce CASCADE;
+--CREATE DATABASE local;
+
+--ALTER DATABASE local OWNER TO postgres;
+
+--CREATE SCHEMA IF NOT EXISTS ecommerce AUTHORIZATION postgres;
 
 DROP TABLE IF EXISTS ecommerce.address;
 CREATE TABLE ecommerce.address(
