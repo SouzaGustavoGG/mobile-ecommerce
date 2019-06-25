@@ -34,8 +34,11 @@ public class OrderService extends Http<Order,Integer> {
 
 	@Override
 	public Order doGet(Integer k) {
-		// TODO Auto-generated method stub
-		return null;
+		Optional<Order> order = orderRepository.findById(k);
+		if(!order.isPresent()) {
+			throw new EcommerceException(HttpStatus.BAD_REQUEST);
+		}
+		return order.get();
 	}
 	
 	/**
@@ -100,7 +103,7 @@ public class OrderService extends Http<Order,Integer> {
 			int diffDays = (int) (diff / (24 * 60 * 60 * 1000));
 			
 			if(diffDays <= 3){
-				orderRepository.deleteById(k);
+				orderRepository.delete(order.get());
 			}
 		}
 	}

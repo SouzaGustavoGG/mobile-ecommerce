@@ -19,7 +19,7 @@ public class ProductService extends Http<Product, Integer>{
 	@Override
 	protected List<Product> doGet() {
 		List<Product> products = new ArrayList<>();
-		productRepository.findAll().forEach(products::add);
+		productRepository.findAllOrderbyTotal().forEach(products::add);
 		return products;
 	}
 

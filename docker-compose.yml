@@ -27,6 +27,7 @@ services:
         - db
       links:
         - db
+      restart: always
       
 volumes: 
   postgres: {}

@@ -29,6 +29,11 @@ public class OrderController {
 					orderService.doGet(), HttpStatus.OK);
 	}
 	
+	@RequestMapping(method=RequestMethod.GET, value="/{id}", produces=MediaType.APPLICATION_JSON_UTF8_VALUE)
+	public ResponseEntity<Order> getOrders(@PathVariable("id") Integer id){
+		return new ResponseEntity<>(orderService.doGet(id), HttpStatus.OK);
+	}
+	
 	@RequestMapping(method=RequestMethod.POST, consumes=MediaType.APPLICATION_JSON_UTF8_VALUE, produces=MediaType.TEXT_PLAIN_VALUE)
 	public ResponseEntity<String> postOrder(@RequestBody Order form){
 		orderService.doPost(form);
