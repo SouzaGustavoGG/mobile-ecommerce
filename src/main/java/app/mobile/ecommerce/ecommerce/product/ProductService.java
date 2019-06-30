@@ -19,7 +19,7 @@ public class ProductService extends Http<Product, Integer>{
 	@Override
 	protected List<Product> doGet() {
 		List<Product> products = new ArrayList<>();
-		productRepository.findAllOrderbyTotal().forEach(products::add);
+		productRepository.findAll().forEach(products::add);
 		return products;
 	}
 
@@ -30,9 +30,9 @@ public class ProductService extends Http<Product, Integer>{
 	}
 
 	@Override
-	protected void doPost(Product e) {
+	protected Product doPost(Product e) {
 		// TODO Auto-generated method stub
-		
+		return null;
 	}
 
 	@Override

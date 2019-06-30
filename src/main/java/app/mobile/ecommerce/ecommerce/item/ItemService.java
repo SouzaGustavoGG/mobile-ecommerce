@@ -27,9 +27,9 @@ public class ItemService extends Http<Item,Integer>{
 	}
 
 	@Override
-	public void doPost(Item e) {
+	public Item doPost(Item e) {
 		// TODO Auto-generated method stub
-		
+		return null;
 	}
 
 	@Override

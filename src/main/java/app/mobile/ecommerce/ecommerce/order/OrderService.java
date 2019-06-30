@@ -59,7 +59,7 @@ public class OrderService extends Http<Order,Integer> {
 	}
 
 	@Override
-	public void doPost(Order e) {
+	public Order doPost(Order e) {
 		//validate form
 		if(e.getUser() == null  || e.getItems() == null) {
 			throw new EcommerceException(HttpStatus.BAD_REQUEST);
@@ -76,7 +76,7 @@ public class OrderService extends Http<Order,Integer> {
 		o.setUser(user.get());
 		o.setItems(e.getItems());
 		o.setTotal(e.getTotal());
-		orderRepository.save(o);		
+		return orderRepository.save(o);		
 	}
 
 	@Override

@@ -1,7 +1,15 @@
 {
    "databaseChangeLog":[
         {"include": {
-            "file": "liquibase-outputChangeLog.json"
+            "file": "liquibase-outputChangeLog-0-0-1.json"
+            }
+        },        
+        {"include": {
+            "file": "liquibase-outputChangeLog-0-0-2.sql"
+            }
+        },        
+        {"include": {
+            "file": "liquibase-outputChangeLog-0-0-3.sql"
             }
         }
    ]

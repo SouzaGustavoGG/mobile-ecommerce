@@ -16,6 +16,8 @@ public class Product implements Serializable{
 	private String name;
 	@Column
 	private Double price;
+	@Column
+	private String url;
 	
 	public Integer getSku() {
 		return sku;
@@ -34,5 +36,11 @@ public class Product implements Serializable{
 	}
 	public void setPrice(Double price) {
 		this.price = price;
+	}	
+	public String getUrl() {
+		return url;
+	}
+	public void setUrl(String url) {
+		this.url = url;
 	}
 }

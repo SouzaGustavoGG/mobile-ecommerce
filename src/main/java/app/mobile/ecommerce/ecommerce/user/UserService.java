@@ -40,9 +40,9 @@ public class UserService extends Http<User,Integer>{
 	}
 
 	@Override
-	public void doPost(User e) {
+	public User doPost(User e) {
 		// TODO Auto-generated method stub
-		
+		return null;
 	}
 
 	/**

@@ -6,7 +6,10 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.MediaType;
 import org.springframework.http.ResponseEntity;
+import org.springframework.web.bind.annotation.DeleteMapping;
+import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
+import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
@@ -29,19 +32,19 @@ public class OrderController {
 					orderService.doGet(), HttpStatus.OK);
 	}
 	
-	@RequestMapping(method=RequestMethod.GET, value="/{id}", produces=MediaType.APPLICATION_JSON_UTF8_VALUE)
-	public ResponseEntity<Order> getOrders(@PathVariable("id") Integer id){
+	@GetMapping(value="/{id}", produces=MediaType.APPLICATION_JSON_UTF8_VALUE)
+	public ResponseEntity<Order> getOrder(@PathVariable Integer id){
 		return new ResponseEntity<>(orderService.doGet(id), HttpStatus.OK);
 	}
 	
-	@RequestMapping(method=RequestMethod.POST, consumes=MediaType.APPLICATION_JSON_UTF8_VALUE, produces=MediaType.TEXT_PLAIN_VALUE)
+	@PostMapping( consumes=MediaType.APPLICATION_JSON_UTF8_VALUE, produces=MediaType.TEXT_PLAIN_VALUE)
 	public ResponseEntity<String> postOrder(@RequestBody Order form){
-		orderService.doPost(form);
-		return new ResponseEntity<>(String.valueOf(true), HttpStatus.CREATED);
+		Order o = orderService.doPost(form);
+		return new ResponseEntity<>(String.valueOf(o.getId()), HttpStatus.CREATED);
 	}
 	
-	@RequestMapping(method=RequestMethod.DELETE, value="/{id}")
-	public ResponseEntity<Void> deleteOrder(@PathVariable("id") Integer id){
+	@DeleteMapping(value="/{id}")
+	public ResponseEntity<Void> deleteOrder(@PathVariable Integer id){
 		orderService.doDelete(id);
 		return new ResponseEntity<>(HttpStatus.OK);
 	}
